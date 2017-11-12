@@ -1,0 +1,11 @@
+site_name: PembrokePSrest
+repo_url: https://github.com/jpsider/PembrokePSrest
+theme: readthedocs
+pages:
+- Home: index.md
+- PembrokePSrest Basics:
+  - What is PembrokePSrest: about.md
+  - Quick Start: Quick-Start-Installation-and-Example.md
+- Basic Commands:
+- Examples:
+- Acknowledgements: acknowledgements.md
