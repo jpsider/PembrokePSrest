@@ -10,7 +10,7 @@ function Invoke-DeployPPSRest
     .PARAMETER SourceAvailableRoutesFile
         A valid File is optional.
 	.EXAMPLE
-        Invoke-DeployPPSRest -InstallDirectory C:\PembrokePS\Rest -SourceRouteFile C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1
+        Invoke-DeployPPSRest -InstallDirectory C:\PembrokePS\Rest -SourceAvailableRoutesDirectory C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data -SourceAvailableRoutesFile C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1
 	.NOTES
         It will create the directory if it does not exist.
     #>

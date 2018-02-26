@@ -1,6 +1,6 @@
 # Need to import all the files first of course.
 
-Set-Location C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSui
+Set-Location C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest
 
 $foundError = $false
 
@@ -8,16 +8,16 @@ $Directories = ("private", "public")
 foreach ($Directory in $Directories)
 {
     # Import the functions.
-    $files = Get-ChildItem .\PembrokePSui\$Directory
+    $files = Get-ChildItem .\PembrokePSrest\$Directory
     foreach ($file in $files)
     {
         # Source the file
         $FileName = $file.Name
         Write-Output "Importing file $FileName"
-        . .\PembrokePSui\$Directory\$FileName
+        . .\PembrokePSrest\$Directory\$FileName
     }
     # Execute Pester for the Directory.
-    $results = Invoke-pester .\tests\$Directory\*.ps1 -CodeCoverage .\PembrokePSui\$Directory\*.ps1 -PassThru
+    $results = Invoke-pester .\tests\$Directory\*.ps1 -CodeCoverage .\PembrokePSrest\$Directory\*.ps1 -PassThru
 
     $MissedCommands = $results.CodeCoverage.NumberOfCommandsMissed
     $FailedCount = $results.FailedCount
