@@ -1,4 +1,4 @@
-function Invoke-MoveEndpointRoutes 
+function Invoke-MoveEndpointRouteSet
 {
     <#
 	.DESCRIPTION
@@ -8,7 +8,7 @@ function Invoke-MoveEndpointRoutes
     .PARAMETER SourceAvailableRoutesDirectory
         A valid Directory is required.
 	.EXAMPLE
-        Invoke-MoveEndpointRoutes -InstallDirectory C:\PembrokePS\Rest -SourceAvailableRoutesDirectory C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data
+        Invoke-MoveEndpointRouteSet -InstallDirectory C:\PembrokePS\Rest -SourceAvailableRoutesDirectory C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data
 	.NOTES
         It will create the directory if it does not exist.
     #>

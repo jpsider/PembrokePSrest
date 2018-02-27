@@ -9,28 +9,28 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule         = 'PembrokePSrest.psm1'
+    RootModule        = 'PembrokePSrest.psm1'
 
     # Version number of this module.
-    ModuleVersion      = '0.0.1'
+    ModuleVersion     = '0.0.1'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
 
     # ID used to uniquely identify this module
-    GUID               = '8c981e88-a04a-438b-94de-91a2da14754f'
+    GUID              = '8c981e88-a04a-438b-94de-91a2da14754f'
 
     # Author of this module
-    Author             = 'Justin Sider'
+    Author            = 'Justin Sider'
 
     # Company or vendor of this module
-    CompanyName        = 'Unknown'
+    CompanyName       = 'Unknown'
 
     # Copyright statement for this module
-    Copyright          = '(c) 2017 Justin Sider. All rights reserved.'
+    Copyright         = '(c) 2017 Justin Sider. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description        = 'PowerShell module to manage Pembroke PS Rest Interfaces'
+    Description       = 'PowerShell module to manage Pembroke PS Rest Interfaces'
 
     # Minimum version of the Windows PowerShell engine required by this module
     # PowerShellVersion = ''
@@ -51,10 +51,10 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    # RequiredModules = @()
+    RequiredModules   = @('RestPS')
 
     # Assemblies that must be loaded prior to importing this module
-    RequiredAssemblies = @('RestPS')
+    # RequiredAssemblies = @()
 
     # Script files (.ps1) that are run in the caller's environment prior to importing this module.
     # ScriptsToProcess = @()
@@ -69,13 +69,13 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport  = @('Invoke-DeployPPSRest', 'Invoke-StartPPSEndpoint')
+    FunctionsToExport = @('Invoke-DeployPPSRest', 'Invoke-StartPPSEndpoint')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'
 
     # Variables to export from this module
-    VariablesToExport  = '*'
+    VariablesToExport = '*'
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport = '*'
@@ -90,7 +90,7 @@
     # FileList = @()
 
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData        = @{
+    PrivateData       = @{
 
         PSData = @{
 

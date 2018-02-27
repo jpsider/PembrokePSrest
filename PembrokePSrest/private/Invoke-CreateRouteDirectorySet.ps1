@@ -1,4 +1,4 @@
-function Invoke-CreateRouteDirectories
+function Invoke-CreateRouteDirectorySet
 {
     <#
 	.DESCRIPTION
@@ -6,7 +6,7 @@ function Invoke-CreateRouteDirectories
     .PARAMETER InstallDirectory
         A valid Directory is required.
 	.EXAMPLE
-        Invoke-CreateRouteDirectories -InstallDirectory C:\PembrokePS\Rest
+        Invoke-CreateRouteDirectorySet -InstallDirectory C:\PembrokePS\Rest
 	.NOTES
         It will create the directory if it does not exist.
     #>

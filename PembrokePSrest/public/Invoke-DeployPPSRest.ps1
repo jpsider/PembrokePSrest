@@ -23,9 +23,18 @@ function Invoke-DeployPPSRest
     )
     try
     {
-        Invoke-CreateRouteDirectories -InstallDirectory $InstallDirectory
-        Invoke-MoveEndpointRoutes -InstallDirectory $InstallDirectory -SourceAvailableRoutesDirectory $SourceAvailableRoutesDirectory
-        Invoke-MoveAvailableRoutesFile -InstallDirectory $InstallDirectory -SourceAvailableRoutesFile $SourceAvailableRoutesFile
+        if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
+        {
+            Write-Output "Invoke-CreateRouteDirectorySet complete successfully."
+        }
+        if (Invoke-MoveEndpointRouteSet -InstallDirectory $InstallDirectory -SourceAvailableRoutesDirectory $SourceAvailableRoutesDirectory)
+        {
+            Write-Output "Invoke-MoveEndpointRouteSet complete successfully."
+        }
+        if (Invoke-MoveAvailableRoutesFile -InstallDirectory $InstallDirectory -SourceAvailableRoutesFile $SourceAvailableRoutesFile)
+        {
+            Write-Output "Invoke-MoveAvailableRoutesFile complete successfully."
+        }
     }
     catch
     {
