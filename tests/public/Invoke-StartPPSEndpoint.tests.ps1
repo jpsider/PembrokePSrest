@@ -1,39 +1,21 @@
-function Invoke-StartPPSEndpoint.tests
-{
-    <#
-	.DESCRIPTION
-		Start a PembrokePS ReST endpoint.
-    .PARAMETER InstallDirectory
-        A valid Directory is required.
-    .PARAMETER SourceAvailableRoutesFile
-        A valid File is required.
-	.EXAMPLE
-        Invoke-StartPPSEndpoint -TBD
-	.NOTES
-        It will create the directory if it does not exist.
-    #>
-    [CmdletBinding()]
-    [OutputType([boolean])]
-    param(
-        [Parameter(Mandatory = $true)][String]$InstallDirectory,
-        [Parameter(Mandatory = $true)][String]$SourceAvailableRoutesFile
-    )
-    try
-    {
-        if (!(Test-Path -Path $SourceAvailableRoutesFile))
-        {
-            Throw "Source Directory path: $SourceAvailableRoutesFile does not exist."
+$script:ModuleName = 'PembrokePSrest'
+
+Describe "Invoke-StartPPSEndpoint function for $moduleName" {
+    It "Should Throw an exception if the source directory does not exist." {
+        Mock -CommandName 'Test-Path' -MockWith {
         }
-        else
-        {
-            Copy-Item -Path "$SourceAvailableRoutesFile" -Destination $InstallDirectory -Force -Confirm:$false
-        }
+        {Invoke-StartPPSEndpoint -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Throw
+        Assert-MockCalled -CommandName 'Test-Path' -Times 1 -Exactly
     }
-    catch
-    {
-        $ErrorMessage = $_.Exception.Message
-        $FailedItem = $_.Exception.ItemName		
-        Write-Error "Error: $ErrorMessage $FailedItem"
-        Throw $_
+    It "Should not throw if the Source exists and the copies succeed." {
+        Mock -CommandName 'Test-Path' -MockWith {
+            return $true
+        }
+        Mock -CommandName 'Copy-Item' -MockWith {
+        }
+        {Invoke-StartPPSEndpoint -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Not -Throw
+        Assert-MockCalled -CommandName 'Test-Path' -Times 2 -Exactly
+        Assert-MockCalled -CommandName 'Copy-Item' -Times 1 -Exactly
+
     }
 }

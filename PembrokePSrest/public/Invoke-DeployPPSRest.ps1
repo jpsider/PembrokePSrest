@@ -25,23 +25,22 @@ function Invoke-DeployPPSRest
     {
         if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
         {
-            Write-Output "Invoke-CreateRouteDirectorySet complete successfully."
+            Write-Log -Message "Invoke-CreateRouteDirectorySet complete successfully." -Logfile $LOG_FILE -OutputStyle ConsoleOnly 
         }
         if (Invoke-MoveEndpointRouteSet -InstallDirectory $InstallDirectory -SourceAvailableRoutesDirectory $SourceAvailableRoutesDirectory)
         {
-            Write-Output "Invoke-MoveEndpointRouteSet complete successfully."
+            Write-Log -Message "Invoke-MoveEndpointRouteSet complete successfully." -Logfile $LOG_FILE -OutputStyle ConsoleOnly 
         }
         if (Invoke-MoveAvailableRoutesFile -InstallDirectory $InstallDirectory -SourceAvailableRoutesFile $SourceAvailableRoutesFile)
         {
-            Write-Output "Invoke-MoveAvailableRoutesFile complete successfully."
+            Write-Log -Message "Invoke-MoveAvailableRoutesFile complete successfully." -Logfile $LOG_FILE -OutputStyle ConsoleOnly 
         }
     }
     catch
     {
         $ErrorMessage = $_.Exception.Message
         $FailedItem = $_.Exception.ItemName		
-        Write-Error "Error: $ErrorMessage $FailedItem"
-        Throw $_
+        Throw "Error: $ErrorMessage $FailedItem"
     }
 
 }

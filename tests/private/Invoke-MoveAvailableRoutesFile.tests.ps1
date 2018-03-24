@@ -4,9 +4,7 @@ Describe "Invoke-MoveAvailableRoutesFile function for $moduleName" {
     It "Should Throw an exception if the source directory does not exist." {
         Mock -CommandName 'Test-Path' -MockWith {
         }
-        Mock -CommandName 'Write-Error' -MockWith {}
         {Invoke-MoveAvailableRoutesFile -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Throw
-        Assert-MockCalled -CommandName 'Write-Error' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Test-Path' -Times 1 -Exactly
     }
     It "Should Return true if the Source exists and the copies succeed." {

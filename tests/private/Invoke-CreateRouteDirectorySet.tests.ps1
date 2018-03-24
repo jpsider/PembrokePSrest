@@ -5,9 +5,7 @@ Describe "Invoke-CreateRouteDirectorySet function for $moduleName" {
         Mock -CommandName 'Test-Path' -MockWith {
             return $true
         }
-        Mock -CommandName 'Write-Error' -MockWith {}
         {Invoke-CreateRouteDirectorySet -InstallDirectory "C:\PembrokePS\Rest"} | Should -Throw
-        Assert-MockCalled -CommandName 'Write-Error' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Test-Path' -Times 1 -Exactly
     }
     It "Should Return true if the Source exists and the copies succeed." {
