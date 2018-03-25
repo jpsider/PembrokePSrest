@@ -34,6 +34,6 @@ function Invoke-CreateRouteDirectorySet
     {
         $ErrorMessage = $_.Exception.Message
         $FailedItem = $_.Exception.ItemName		
-        Throw "Error: $ErrorMessage $FailedItem"
+        Throw "Invoke-CreateRouteDirectorySet: $ErrorMessage $FailedItem"
     }
 }

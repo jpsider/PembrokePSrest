@@ -38,11 +38,11 @@ function Invoke-UpdateComponent {
         {
             $ErrorMessage = $_.Exception.Message
             $FailedItem = $_.Exception.ItemName		
-            Throw "Error: $ErrorMessage $FailedItem"
+            Throw "Invoke-UpdateComponent: $ErrorMessage $FailedItem"
         }
         $RestReturn
     } else {
-        Throw "Unable to reach web server."
+        Throw "Unable to reach Rest server: $RestServer."
     }
     
 }

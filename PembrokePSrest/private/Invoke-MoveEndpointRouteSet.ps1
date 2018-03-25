@@ -48,6 +48,6 @@ function Invoke-MoveEndpointRouteSet
     {
         $ErrorMessage = $_.Exception.Message
         $FailedItem = $_.Exception.ItemName		
-        Throw "Error: $ErrorMessage $FailedItem"
+        Throw "Invoke-MoveEndpointRouteSet: $ErrorMessage $FailedItem"
     }
 }

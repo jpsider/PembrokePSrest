@@ -33,6 +33,6 @@ function Invoke-StartPPSEndpoint
     {
         $ErrorMessage = $_.Exception.Message
         $FailedItem = $_.Exception.ItemName		
-        Throw "Error: $ErrorMessage $FailedItem"
+        Throw "Invoke-StartPPSEndpoint: $ErrorMessage $FailedItem"
     }
 }

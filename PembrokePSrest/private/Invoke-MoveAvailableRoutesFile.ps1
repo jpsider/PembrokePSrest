@@ -33,6 +33,6 @@ function Invoke-MoveAvailableRoutesFile
     {
         $ErrorMessage = $_.Exception.Message
         $FailedItem = $_.Exception.ItemName		
-        Throw "Error: $ErrorMessage $FailedItem"
+        Throw "Invoke-MoveAvailableRoutesFile: $ErrorMessage $FailedItem"
     }
 }
