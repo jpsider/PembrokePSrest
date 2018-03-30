@@ -22,10 +22,12 @@ function Invoke-StartPPSEndpoint
     {
         if (!(Test-Path -Path $SourceAvailableRoutesFile))
         {
-            Throw "Source Directory path: $SourceAvailableRoutesFile does not exist."
+            Write-LogLevel -Message "lamp" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Throw "Invoke-StartPPSEndpoint: Source Directory path: $SourceAvailableRoutesFile does not exist."
         }
         else
         {
+            Write-LogLevel -Message "lamp" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
             Copy-Item -Path "$SourceAvailableRoutesFile" -Destination $InstallDirectory -Force -Confirm:$false
         }
     }

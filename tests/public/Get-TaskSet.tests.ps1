@@ -1,6 +1,7 @@
 $script:ModuleName = 'PembrokePSutilities'
 
 Describe "Get-TaskSet function for $moduleName" {
+    function Write-LogLevel{}
     function Get-StatusIdByName {}
     It "Should not be null" {
         $RawReturn = @{
@@ -21,10 +22,12 @@ Describe "Get-TaskSet function for $moduleName" {
         Mock -CommandName 'Invoke-RestMethod' -MockWith {
             $ReturnData
         }
+        Mock -CommandName 'Write-LogLevel' -MockWith {}
         Get-TaskSet -TaskStatus Running -RestServer dummyServer | Should -BeOfType System.Management.Automation.PSCustomObject
         Assert-MockCalled -CommandName 'Test-Connection' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Get-StatusIdByName' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 1 -Exactly
+        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
     }
     It "Should Throw if the Status_ID check fails." {
         Mock -CommandName 'Test-Connection' -MockWith {
@@ -33,15 +36,19 @@ Describe "Get-TaskSet function for $moduleName" {
         Mock -CommandName 'Get-StatusIdByName' -MockWith {
             Throw "Could not get Satus_ID"
         }
+        Mock -CommandName 'Write-LogLevel' -MockWith {}
         {Get-TaskSet -TableName tasks -TaskStatus Running -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 2 -Exactly
+        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
     }
     It "Should Throw if the Rest Server cannot be reached.." {
         Mock -CommandName 'Test-Connection' -MockWith {
             $false
         }
+        Mock -CommandName 'Write-LogLevel' -MockWith {}
         {Get-TaskSet -TableName tasks -TaskStatus Running -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 3 -Exactly
+        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
     }
     It "Should Throw if the TaskStatus is not valid." {
         Mock -CommandName 'Test-Connection' -MockWith {
@@ -50,8 +57,10 @@ Describe "Get-TaskSet function for $moduleName" {
         Mock -CommandName 'Invoke-RestMethod' -MockWith { 
             Throw "(404) Not Found"
         }
+        Mock -CommandName 'Write-LogLevel' -MockWith {}
         {Get-TaskSet -TableName tasks -TaskStatus Running -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 4 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 1 -Exactly
+        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 3 -Exactly
     }
 }

@@ -24,8 +24,11 @@ function Get-ComponentStatus {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
+            Write-LogLevel -Message "Getting Component: $ComponentId, Type: $ComponentType Status." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
             $ComponentType = $ComponentType.ToLower()
-            $ComponentStatusData = Invoke-RestMethod -Method Get -Uri "http://$RestServer/PembrokePS/public/api/api.php/$ComponentType/$ComponentId" -UseBasicParsing
+            $URL = "http://$RestServer/PembrokePS/public/api/api.php/$ComponentType/$ComponentId"
+            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            $ComponentStatusData = Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing
         }
         catch
         {
@@ -35,7 +38,7 @@ function Get-ComponentStatus {
         }
         $ComponentStatusData
     } else {
-        Throw "Unable to reach Rest server: $RestServer."
+        Throw "Get-ComponentStatus: Unable to reach Rest server: $RestServer."
     }
     
 }

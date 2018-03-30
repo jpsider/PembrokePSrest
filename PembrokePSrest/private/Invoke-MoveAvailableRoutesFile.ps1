@@ -22,10 +22,12 @@ function Invoke-MoveAvailableRoutesFile
     {
         if (!(Test-Path -Path $SourceAvailableRoutesFile))
         {
-            Throw "Source Directory path: $SourceAvailableRoutesFile does not exist."
+            Write-LogLevel -Message "Source Directory path: $SourceAvailableRoutesFile does not exist." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Throw "Invoke-MoveAvailableRoutesFile: Source Directory path: $SourceAvailableRoutesFile does not exist."
         }
         else
         {
+            Write-LogLevel -Message "Copying Available Routes file to: $InstallDirectory." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
             Copy-Item -Path "$SourceAvailableRoutesFile" -Destination $InstallDirectory -Force -Confirm:$false
         }
     }

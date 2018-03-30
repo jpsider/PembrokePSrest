@@ -27,6 +27,9 @@ function Invoke-UpdateTaskTable {
         try
         {
             $TableName = $TableName.ToLower()
+            Write-LogLevel -Message "Updating Task Table: $TableNAme, Task: $TaskId." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            $URL = "http://$RestServer/PembrokePS/public/api/api.php/$TableName/$TaskID"
+            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
             $RawRestReturn = Invoke-RestMethod -Method Put -Uri "http://$RestServer/PembrokePS/public/api/api.php/$TableName/$TaskID" -body $body
             $RestReturn = ConvertFrom-Json $RawRestReturn
         }
@@ -38,7 +41,7 @@ function Invoke-UpdateTaskTable {
         }
         $RestReturn
     } else {
-        Throw "Unable to reach Rest server: $RestServer."
+        Throw "Invoke-UpdateTaskTable: Unable to reach Rest server: $RestServer."
     }
     
 }
