@@ -2,7 +2,7 @@ function Get-TaskInfo {
     <#
 	.DESCRIPTION
 		This function will gather Tasks based on a requested Status
-    .PARAMETER TaskStatus
+    .PARAMETER TaskId
         A Status is required.
     .PARAMETER TableName
         A TableName is optional, default is tasks.
