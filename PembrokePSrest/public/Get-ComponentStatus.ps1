@@ -18,15 +18,15 @@ function Get-ComponentStatus {
     param(
         [ValidateSet("Queue_Manager","Workflow_Manager")]
         [string]$ComponentType,
-        [int]$ComponentId,
-        [string]$RestServer
+        [Parameter(Mandatory=$true)][int]$ComponentId,
+        [Parameter(Mandatory=$true)][string]$RestServer
     )
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
             Write-LogLevel -Message "Getting Component: $ComponentId, Type: $ComponentType Status." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
             $ComponentType = $ComponentType.ToLower()
-            $URL = "http://$RestServer/PembrokePS/public/api/api.php/$ComponentType/$ComponentId"
+            $URL = "http://$RestServer/PembrokePS/public/api/api.php/$ComponentType" + "?filter=ID,eq,$ComponentId&transform=1"
             Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
             $ComponentStatusData = Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing
         }
