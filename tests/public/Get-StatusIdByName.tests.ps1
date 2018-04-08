@@ -1,7 +1,8 @@
-$script:ModuleName = 'PembrokePSutilities'
+$script:ModuleName = 'PembrokePSrest'
 
 Describe "Get-StatusIdByName function for $moduleName" {
     function Write-LogLevel{}
+    function Test-Connection{}
     $RawReturn = @{
         status = @{
             ID            = '1'

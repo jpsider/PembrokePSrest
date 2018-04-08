@@ -3,32 +3,32 @@ function Invoke-StartPPSEndpoint
     <#
 	.DESCRIPTION
 		Start a PembrokePS ReST endpoint.
-    .PARAMETER InstallDirectory
-        A valid Directory is required.
+    .PARAMETER Port
+        A valid Port is required.
     .PARAMETER SourceAvailableRoutesFile
         A valid File is required.
 	.EXAMPLE
-        Invoke-StartPPSEndpoint -TBD
+        Invoke-StartPPSEndpoint -Port 8999 -SourceAvailableRoutesFile $SourceAvailableRoutesFile
 	.NOTES
         It will create the directory if it does not exist.
     #>
     [CmdletBinding()]
     [OutputType([boolean])]
     param(
-        [Parameter(Mandatory = $true)][String]$InstallDirectory,
+        [Parameter(Mandatory = $true)][Int]$Port,
         [Parameter(Mandatory = $true)][String]$SourceAvailableRoutesFile
     )
     try
     {
         if (!(Test-Path -Path $SourceAvailableRoutesFile))
         {
-            Write-LogLevel -Message "lamp" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
             Throw "Invoke-StartPPSEndpoint: Source Directory path: $SourceAvailableRoutesFile does not exist."
         }
         else
         {
-            Write-LogLevel -Message "lamp" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
-            Copy-Item -Path "$SourceAvailableRoutesFile" -Destination $InstallDirectory -Force -Confirm:$false
+            $ExecutionPath = ((Split-Path -Path (Get-Module -ListAvailable PembrokePSrest).path) + "\bin\Invoke-NewEndpoint.ps1")
+            Write-LogLevel -Message "Starting Endpoint." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
+            Start-Process -WindowStyle Normal powershell.exe -ArgumentList "-file $ExecutionPath", "-SourceAvailableRoutesFile $SourceAvailableRoutesFile -Port $Port"
         }
     }
     catch

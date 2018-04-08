@@ -1,7 +1,8 @@
-$script:ModuleName = 'PembrokePSutilities'
+$script:ModuleName = 'PembrokePSrest'
 
 Describe "Invoke-UpdateComponent function for $moduleName" {
     function Write-LogLevel{}
+    function Test-Connection{}
     It "Should not be 1" {
         Mock -CommandName 'Test-Connection' -MockWith {
             $true

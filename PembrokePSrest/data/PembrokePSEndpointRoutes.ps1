@@ -10,22 +10,23 @@ function PembrokePSEndpointRoutes
         @{
             'RequestType'    = 'GET'
             'RequestURL'     = '/selftest'
-            'RequestCommand' = "endpoints\GET\Invoke-SelfTest.ps1"
+            'RequestCommand' = "c:\PembrokePS\rest\GET\Invoke-SelfTest.ps1"
         }
         @{
             'RequestType'    = 'PUT'
             'RequestURL'     = '/selftest'
-            'RequestCommand' = "endpoints\PUT\Invoke-SelfTest.ps1"
+            'RequestCommand' = "c:\PembrokePS\rest\PUT\Invoke-SelfTest.ps1"
         }
         @{
             'RequestType'    = 'POST'
             'RequestURL'     = '/selftest'
-            'RequestCommand' = "endpoints\POST\Invoke-SelfTest.ps1"
+            'RequestCommand' = "c:\PembrokePS\rest\POST\Invoke-SelfTest.ps1"
         }
         @{
             'RequestType'    = 'DELETE'
             'RequestURL'     = '/selftest'
-            'RequestCommand' = "endpoints\DELETE\Invoke-SelfTest.ps1"
+            'RequestCommand' = "c:\PembrokePS\rest\DELETE\Invoke-SelfTest.ps1"
         }            
     )
 }
+PembrokePSEndpointRoutes

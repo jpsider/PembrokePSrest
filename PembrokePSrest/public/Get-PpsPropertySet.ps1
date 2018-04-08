@@ -1,11 +1,11 @@
-function Get-PembrokePSproperties {
+function Get-PpsPropertySet {
     <#
 	.DESCRIPTION
 		This function will gather Tasks based on a requested Status
     .PARAMETER RestServer
         A RestServer is Required.
 	.EXAMPLE
-        Get-PembrokePSproperties -RestServer localhost
+        Get-PpsPropertySet -RestServer localhost
 	.NOTES
         This will return a hashtable of data from the PPS database.
     #>
@@ -26,11 +26,11 @@ function Get-PembrokePSproperties {
         {
             $ErrorMessage = $_.Exception.Message
             $FailedItem = $_.Exception.ItemName		
-            Throw "Get-PembrokePSproperties: $ErrorMessage $FailedItem"
+            Throw "Get-PpsPropertySet: $ErrorMessage $FailedItem"
         }
         $PropertyData
     } else {
-        Throw "Get-PembrokePSproperties: Unable to reach Rest server: $RestServer."
+        Throw "Get-PpsPropertySet: Unable to reach Rest server: $RestServer."
     }
     
 }

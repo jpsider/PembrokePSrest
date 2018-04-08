@@ -1,7 +1,8 @@
-$script:ModuleName = 'PembrokePSutilities'
+$script:ModuleName = 'PembrokePSrest'
 
-Describe "Get-PembrokePSproperties function for $moduleName" {
+Describe "Get-PpsPropertySet function for $moduleName" {
     function Write-LogLevel{}
+    function Test-Connection{}
     It "Should not be null if information is returned correctly." {
         $RawReturn = @{
             properties = @{
@@ -19,7 +20,7 @@ Describe "Get-PembrokePSproperties function for $moduleName" {
             $ReturnData
         }
         Mock -CommandName 'Write-LogLevel' -MockWith {}
-        Get-PembrokePSproperties -RestServer dummyServer | Should -BeOfType System.Management.Automation.PSCustomObject
+        Get-PpsPropertySet -RestServer dummyServer | Should -BeOfType System.Management.Automation.PSCustomObject
         Assert-MockCalled -CommandName 'Test-Connection' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
@@ -29,7 +30,7 @@ Describe "Get-PembrokePSproperties function for $moduleName" {
             $false
         }
         Mock -CommandName 'Write-LogLevel' -MockWith {}
-        {Get-PembrokePSproperties -RestServer dummyServer} | Should -Throw
+        {Get-PpsPropertySet -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 2 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
     }
@@ -41,7 +42,7 @@ Describe "Get-PembrokePSproperties function for $moduleName" {
             Throw "(404) Not Found"
         }
         Mock -CommandName 'Write-LogLevel' -MockWith {}
-        {Get-PembrokePSproperties -RestServer dummyServer} | Should -Throw
+        {Get-PpsPropertySet -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 3 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 2 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 4 -Exactly

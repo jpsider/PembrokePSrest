@@ -69,7 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('Invoke-DeployPPSRest', 'Invoke-StartPPSEndpoint')
+    FunctionsToExport = @('Invoke-DeployPPSRest', 'Invoke-StartPPSEndpoint','Get-ComponentStatus','Get-EndpointPort','Get-PpsPropertySet','Get-StatusIdByName','Get-TaskInfo','Get-TaskSet','Invoke-UpdateComponent','Invoke-UpdateTaskTable')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'

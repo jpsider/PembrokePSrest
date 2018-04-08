@@ -1,7 +1,8 @@
-$script:ModuleName = 'PembrokePSutilities'
+$script:ModuleName = 'PembrokePSrest'
 
 Describe "Get-TaskInfo function for $moduleName" {
     function Write-LogLevel{}
+    function Test-Connection{}
     It "Should not be null if information is returned correctly." {
         $RawReturn = @{
             tasks = @{

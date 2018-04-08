@@ -1,7 +1,8 @@
-$script:ModuleName = 'PembrokePSutilities'
+$script:ModuleName = 'PembrokePSrest'
 
 Describe "Invoke-UpdateTaskTable function for $moduleName" {
     function Write-LogLevel{}
+    function Test-Connection{}
     $body = @{STATUS_ID = '2'}
     It "Should not be null" {
         Mock -CommandName 'Test-Connection' -MockWith {
