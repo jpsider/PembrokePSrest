@@ -19,11 +19,11 @@ function Invoke-DeployPPSRest
     param(
         [String]$InstallDirectory = 'C:\PembrokePS\Rest',
         [String]$SourceAvailableRoutesDirectory = ((Split-Path -Path (Get-Module -ListAvailable PembrokePSrest).path) + "\Data"),
-        [String]$SourceAvailableRoutesFile = '\data\PembrokePSEndpointRoutes.ps1'
+        [String]$SourceAvailableRoutesFile = '\PembrokePSEndpointRoutes.ps1'
     )
     try
     {       
-        $SourceAvailableRoutesFile = $SourceAvailableRoutesDirectory + $SourceAvailableRoutesFile
+        #$SourceAvailableRoutesFile = $SourceAvailableRoutesDirectory + $SourceAvailableRoutesFile
         if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
         {
             Write-LogLevel -Message "Invoke-CreateRouteDirectorySet complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO

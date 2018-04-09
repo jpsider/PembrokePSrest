@@ -22,12 +22,12 @@ function Invoke-MoveEndpointRouteSet
     {
         if (!(Test-Path -Path $SourceAvailableRoutesDirectory))
         {
-            Write-LogLevel -Message "Source Directory path: $SourceAvailableRoutesDirectory does not exist." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-LogLevel -Message "Source Directory path: $SourceAvailableRoutesDirectory does not exist." -Logfile "c:\temp\trash.log" -RunLogLevel CONSOLEONLY -MsgLevel DEBUG
             Throw "Invoke-MoveEndpointRouteSet: Source Directory path: $SourceAvailableRoutesDirectory does not exist."
         }
         else
         {
-            Write-LogLevel -Message "Creating Rest Directories." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
+            Write-LogLevel -Message "Creating Rest Directories." -Logfile "c:\temp\trash.log" -RunLogLevel CONSOLEONLY -MsgLevel DEBUG
             if (Test-Path -Path "$SourceAvailableRoutesDirectory\DELETE")
             {
                 Copy-Item -Path "$SourceAvailableRoutesDirectory\DELETE" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
