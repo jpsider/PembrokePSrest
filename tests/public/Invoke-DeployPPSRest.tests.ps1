@@ -17,7 +17,6 @@ Describe "Invoke-DeployPPSRest function for $moduleName" {
         {Invoke-DeployPPSRest -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesDirectory "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Not -Throw
         Assert-MockCalled -CommandName 'Invoke-CreateRouteDirectorySet' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Invoke-MoveEndpointRouteSet' -Times 1 -Exactly
-        Assert-MockCalled -CommandName 'Invoke-MoveAvailableRoutesFile' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 3 -Exactly
     }
     It "Should Throw an exception if a subtask fails." {
@@ -34,7 +33,6 @@ Describe "Invoke-DeployPPSRest function for $moduleName" {
         {Invoke-DeployPPSRest -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesDirectory "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Throw
         Assert-MockCalled -CommandName 'Invoke-CreateRouteDirectorySet' -Times 2 -Exactly
         Assert-MockCalled -CommandName 'Invoke-MoveEndpointRouteSet' -Times 2 -Exactly
-        Assert-MockCalled -CommandName 'Invoke-MoveAvailableRoutesFile' -Times 2 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 5 -Exactly
     }
     It "Should Throw an exception if a subtask fails." {
@@ -62,7 +60,6 @@ Describe "Invoke-DeployPPSRest function for $moduleName" {
         {Invoke-DeployPPSRest -InstallDirectory "C:\PembrokePS\Rest" } | Should -Throw
         Assert-MockCalled -CommandName 'Invoke-CreateRouteDirectorySet' -Times 3 -Exactly
         Assert-MockCalled -CommandName 'Invoke-MoveEndpointRouteSet' -Times 3 -Exactly
-        Assert-MockCalled -CommandName 'Invoke-MoveAvailableRoutesFile' -Times 3 -Exactly
         Assert-MockCalled -CommandName 'Write-LogLevel' -Times 7 -Exactly
     }
 }

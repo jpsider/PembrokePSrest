@@ -19,7 +19,7 @@ function Invoke-DeployPPSRest
     param(
         [String]$InstallDirectory = 'C:\PembrokePS\Rest',
         [String]$SourceAvailableRoutesDirectory = ((Split-Path -Path (Get-Module -ListAvailable PembrokePSrest).path) + "\Data"),
-        [String]$SourceAvailableRoutesFile = '\PembrokePSEndpointRoutes.ps1'
+        [String]$SourceAvailableRoutesFile = '\PembrokePS\EndpointRoutes.ps1'
     )
     try
     {       
@@ -31,10 +31,6 @@ function Invoke-DeployPPSRest
         if (Invoke-MoveEndpointRouteSet -InstallDirectory $InstallDirectory -SourceAvailableRoutesDirectory $SourceAvailableRoutesDirectory)
         {
             Write-LogLevel -Message "Invoke-MoveEndpointRouteSet complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO
-        }
-        if (Invoke-MoveAvailableRoutesFile -InstallDirectory $InstallDirectory -SourceAvailableRoutesFile $SourceAvailableRoutesFile)
-        {
-            Write-LogLevel -Message "Invoke-MoveAvailableRoutesFile complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO
         }
     }
     catch
