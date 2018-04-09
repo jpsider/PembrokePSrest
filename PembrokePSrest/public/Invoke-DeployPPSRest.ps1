@@ -23,6 +23,7 @@ function Invoke-DeployPPSRest
     )
     try
     {       
+        $SourceAvailableRoutesFile = $SourceAvailableRoutesDirectory + $SourceAvailableRoutesFile
         if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
         {
             Write-LogLevel -Message "Invoke-CreateRouteDirectorySet complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO

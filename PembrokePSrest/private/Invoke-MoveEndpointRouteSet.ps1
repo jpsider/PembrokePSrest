@@ -28,21 +28,21 @@ function Invoke-MoveEndpointRouteSet
         else
         {
             Write-LogLevel -Message "Creating Rest Directories." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
-            if (Test-Path -Path "$SourceAvailableRoutesDirectory\Data\DELETE")
+            if (Test-Path -Path "$SourceAvailableRoutesDirectory\DELETE")
             {
-                Copy-Item -Path "$SourceAvailableRoutesDirectory\Data\DELETE" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
+                Copy-Item -Path "$SourceAvailableRoutesDirectory\DELETE" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
             }
-            if (Test-Path -Path "$SourceAvailableRoutesDirectory\Data\GET")
+            if (Test-Path -Path "$SourceAvailableRoutesDirectory\GET")
             {
-                Copy-Item -Path "$SourceAvailableRoutesDirectory\Data\GET" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
+                Copy-Item -Path "$SourceAvailableRoutesDirectory\GET" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
             }
-            if (Test-Path -Path "$SourceAvailableRoutesDirectory\Data\POST")
+            if (Test-Path -Path "$SourceAvailableRoutesDirectory\POST")
             {
-                Copy-Item -Path "$SourceAvailableRoutesDirectory\Data\POST" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
+                Copy-Item -Path "$SourceAvailableRoutesDirectory\POST" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
             }
-            if (Test-Path -Path "$SourceAvailableRoutesDirectory\Data\PUT")
+            if (Test-Path -Path "$SourceAvailableRoutesDirectory\PUT")
             {
-                Copy-Item -Path "$SourceAvailableRoutesDirectory\Data\PUT" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
+                Copy-Item -Path "$SourceAvailableRoutesDirectory\PUT" -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false
             }
         }
     }
