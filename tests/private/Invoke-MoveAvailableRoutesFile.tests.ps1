@@ -1,11 +1,11 @@
 $script:ModuleName = 'PembrokePSrest'
 
 Describe "Invoke-MoveAvailableRoutesFile function for $moduleName" {
-    function Write-LogLevel{}
+    function Write-Output{}
     It "Should Throw an exception if the source directory does not exist." {
         Mock -CommandName 'Test-Path' -MockWith {
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         {Invoke-MoveAvailableRoutesFile -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Path' -Times 1 -Exactly
     }
@@ -15,7 +15,7 @@ Describe "Invoke-MoveAvailableRoutesFile function for $moduleName" {
         }
         Mock -CommandName 'Copy-Item' -MockWith {
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         {Invoke-MoveAvailableRoutesFile -InstallDirectory "C:\PembrokePS\Rest" -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Not -Throw
         Assert-MockCalled -CommandName 'Test-Path' -Times 2 -Exactly
         Assert-MockCalled -CommandName 'Copy-Item' -Times 1 -Exactly

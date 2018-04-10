@@ -20,7 +20,8 @@ try
 {
     if (Test-Path -Path $SourceAvailableRoutesFile)
     {
-        Start-RestPSListener -Port $Port -RoutesFilePath $SourceAvailableRoutesFile
+		$Host.UI.RawUI.WindowTitle = "PembrokePS Endpoint Port:$Port"
+		Start-RestPSListener -Port $Port -RoutesFilePath $SourceAvailableRoutesFile
     }
     else 
     {

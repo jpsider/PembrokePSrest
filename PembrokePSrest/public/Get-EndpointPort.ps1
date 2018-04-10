@@ -20,9 +20,9 @@ function Get-EndpointPort {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
-            Write-LogLevel -Message "Getting Component Endpoint Port data for Id: $EndpointPortID." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Getting Component Endpoint Port data for Id: $EndpointPortID."
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/endpoint_ports?filter=ID,eq,$EndpointPortID&transform=1"
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL"
             $EndpointPortData = Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing
         }
         catch

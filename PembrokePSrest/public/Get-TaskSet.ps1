@@ -24,11 +24,11 @@ function Get-TaskSet {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
-            Write-LogLevel -Message "Gathering Task data from: $TableName with Status: $TaskStatus." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Gathering Task data from: $TableName with Status: $TaskStatus."
             $Status_ID = Get-StatusIdByName -StatusName $TaskStatus -RestServer $RestServer
             $TableName = $TableName.ToLower()
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/" + $TableName + "?include=status&filter=status_id,eq," + $Status_ID + '&transform=1'
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL" -Logfile "$LOG_FILE"
             $TaskData = (Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing).$TableName
         }
         catch

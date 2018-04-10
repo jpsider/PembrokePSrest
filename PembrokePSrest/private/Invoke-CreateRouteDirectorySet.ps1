@@ -19,12 +19,12 @@ function Invoke-CreateRouteDirectorySet
     {
         if (Test-Path -Path $InstallDirectory)
         {
-            Write-LogLevel -Message "Install Directory path: $InstallDirectory already exists." -Logfile "c:\temp\trash.log" -RunLogLevel CONSOLEONLY -MsgLevel DEBUG
+            Write-Output "Install Directory path: $InstallDirectory already exists."
             Throw "Invoke-CreateRouteDirectorySet: Install Directory path: $InstallDirectory already exists."
         }
         else
         {
-            Write-LogLevel -Message "Creating Rest Directories in: $InstallDirectory." -Logfile "c:\temp\trash.log" -RunLogLevel CONSOLEONLY -MsgLevel DEBUG
+            Write-Output "Creating Rest Directories in: $InstallDirectory."
             New-Item -Path $InstallDirectory -ItemType Directory
             New-Item -Path "$InstallDirectory\DELETE" -ItemType Directory
             New-Item -Path "$InstallDirectory\GET" -ItemType Directory

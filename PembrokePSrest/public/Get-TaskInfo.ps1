@@ -23,9 +23,9 @@ function Get-TaskInfo {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
-            Write-LogLevel -Message "Gathering Task data from: $TableName TaskId: $TaskId." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Gathering Task data from: $TableName TaskId: $TaskId." -Logfile "$LOG_FILE"
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/" + $TableName + "?include=task_types,targets&filter=id,eq," + $TaskId + '&transform=1'
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL"
             $TaskData = (Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing).$TableName
         }
         catch

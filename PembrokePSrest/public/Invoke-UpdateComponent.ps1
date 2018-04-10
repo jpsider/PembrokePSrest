@@ -29,11 +29,11 @@ function Invoke-UpdateComponent {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
-            Write-LogLevel -Message "Updating Component $ComponentId, Type: $ComponentType, Column: $Column, Value: $value." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Updating Component $ComponentId, Type: $ComponentType, Column: $Column, Value: $value."
             $ComponentType = $ComponentType.ToLower()
             $body = @{$Column = "$Value"} | convertto-json
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/$ComponentType/$ComponentId"
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL"
             $RawRestReturn = Invoke-RestMethod -Method Put -Uri "$URL" -body $body
             $RestReturn = ConvertFrom-Json $RawRestReturn
         }

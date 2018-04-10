@@ -26,8 +26,8 @@ function Invoke-StartPPSEndpoint
         }
         else
         {
-            $ExecutionPath = ((Split-Path -Path (Get-Module -ListAvailable PembrokePSrest).path) + "\bin\Invoke-NewEndpoint.ps1")
-            Write-LogLevel -Message "Starting Endpoint." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel INFO
+            $ExecutionPath = "C:\PembrokePS\Rest\bin\Invoke-NewEndpoint.ps1"
+            Write-Output "Starting Endpoint."
             Start-Process -WindowStyle Normal powershell.exe -ArgumentList "-file $ExecutionPath", "-SourceAvailableRoutesFile $SourceAvailableRoutesFile -Port $Port"
         }
     }

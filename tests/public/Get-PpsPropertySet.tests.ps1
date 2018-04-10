@@ -1,7 +1,7 @@
 $script:ModuleName = 'PembrokePSrest'
 
 Describe "Get-PpsPropertySet function for $moduleName" {
-    function Write-LogLevel{}
+    function Write-Output{}
     function Test-Connection{}
     It "Should not be null if information is returned correctly." {
         $RawReturn = @{
@@ -19,20 +19,20 @@ Describe "Get-PpsPropertySet function for $moduleName" {
         Mock -CommandName 'Invoke-RestMethod' -MockWith {
             $ReturnData
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         Get-PpsPropertySet -RestServer dummyServer | Should -BeOfType System.Management.Automation.PSCustomObject
         Assert-MockCalled -CommandName 'Test-Connection' -Times 1 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 1 -Exactly
-        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
+        Assert-MockCalled -CommandName 'Write-Output' -Times 2 -Exactly
     }
     It "Should Throw if the Rest Server is not reachable." {
         Mock -CommandName 'Test-Connection' -MockWith {
             $false
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         {Get-PpsPropertySet -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 2 -Exactly
-        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 2 -Exactly
+        Assert-MockCalled -CommandName 'Write-Output' -Times 2 -Exactly
     }
     It "Should Throw if the Restcall fails." {
         Mock -CommandName 'Test-Connection' -MockWith {
@@ -41,10 +41,10 @@ Describe "Get-PpsPropertySet function for $moduleName" {
         Mock -CommandName 'Invoke-RestMethod' -MockWith { 
             Throw "(404) Not Found"
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         {Get-PpsPropertySet -RestServer dummyServer} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Connection' -Times 3 -Exactly
         Assert-MockCalled -CommandName 'Invoke-RestMethod' -Times 2 -Exactly
-        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 4 -Exactly
+        Assert-MockCalled -CommandName 'Write-Output' -Times 4 -Exactly
     }
 }

@@ -27,9 +27,9 @@ function Invoke-UpdateTaskTable {
         try
         {
             $TableName = $TableName.ToLower()
-            Write-LogLevel -Message "Updating Task Table: $TableNAme, Task: $TaskId." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Updating Task Table: $TableNAme, Task: $TaskId."
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/$TableName/$TaskID"
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL"
             $RawRestReturn = Invoke-RestMethod -Method Put -Uri "http://$RestServer/PembrokePS/public/api/api.php/$TableName/$TaskID" -body $body
             $RestReturn = ConvertFrom-Json $RawRestReturn
         }

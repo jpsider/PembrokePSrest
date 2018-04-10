@@ -21,10 +21,10 @@ function Get-StatusIdByName {
     if (Test-Connection -Count 1 $RestServer -Quiet) {
         try
         {
-            Write-LogLevel -Message "Getting StatusID by Status Name: $StatusName." -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel DEBUG
+            Write-Output "Getting StatusID by Status Name: $StatusName."
             $StatusName = $StatusName.ToLower()
             $URL = "http://$RestServer/PembrokePS/public/api/api.php/status?filter=STATUS_NAME,eq,$StatusName&transform=1"
-            Write-LogLevel -Message "$URL" -Logfile "$LOG_FILE" -RunLogLevel $RunLogLevel -MsgLevel TRACE
+            Write-Output "$URL" -Logfile "$LOG_FILE"
             $StatusID = ((Invoke-RestMethod -Method Get -Uri "$URL" -UseBasicParsing).status).ID
         }
         catch

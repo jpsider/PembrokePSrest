@@ -1,7 +1,7 @@
 $script:ModuleName = 'PembrokePSrest'
 
 Describe "Invoke-StartPPSEndpoint function for $moduleName" {
-    function Write-LogLevel{}
+    function Write-Output{}
     function Test-Path{}
     function Start-Process{}
     function Get-Module{}
@@ -9,16 +9,16 @@ Describe "Invoke-StartPPSEndpoint function for $moduleName" {
         Mock -CommandName 'Test-Path' -MockWith {
             $false
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         {Invoke-StartPPSEndpoint -Port 1234 -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Throw
         Assert-MockCalled -CommandName 'Test-Path' -Times 1 -Exactly
-        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 0 -Exactly
+        Assert-MockCalled -CommandName 'Write-Output' -Times 0 -Exactly
     }
     It "Should not throw if the Source exists and the copies succeed." {
         Mock -CommandName 'Test-Path' -MockWith {
             return $true
         }
-        Mock -CommandName 'Write-LogLevel' -MockWith {}
+        Mock -CommandName 'Write-Output' -MockWith {}
         Mock -CommandName 'Start-Process' -MockWith {}
         Mock -CommandName 'Get-Module' -MockWith {
             $RawReturn4 = @(
@@ -33,6 +33,6 @@ Describe "Invoke-StartPPSEndpoint function for $moduleName" {
         }
         {Invoke-StartPPSEndpoint -Port 1234 -SourceAvailableRoutesFile "C:\OPEN_PROJECTS\ProjectPembroke\PembrokePSrest\PembrokePSrest\data\PembrokePSEndpointRoutes.ps1"} | Should -Not -Throw
         Assert-MockCalled -CommandName 'Test-Path' -Times 2 -Exactly
-        Assert-MockCalled -CommandName 'Write-LogLevel' -Times 1 -Exactly
+        Assert-MockCalled -CommandName 'Write-Output' -Times 1 -Exactly
     }
 }

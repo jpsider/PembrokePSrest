@@ -26,11 +26,16 @@ function Invoke-DeployPPSRest
         #$SourceAvailableRoutesFile = $SourceAvailableRoutesDirectory + $SourceAvailableRoutesFile
         if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
         {
-            Write-LogLevel -Message "Invoke-CreateRouteDirectorySet complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO
+            Write-Output "Invoke-CreateRouteDirectorySet complete successfully."
         }
         if (Invoke-MoveEndpointRouteSet -InstallDirectory $InstallDirectory -SourceAvailableRoutesDirectory $SourceAvailableRoutesDirectory)
         {
-            Write-LogLevel -Message "Invoke-MoveEndpointRouteSet complete successfully." -Logfile $LOG_FILE -RunLogLevel $RunLogLevel -MsgLevel INFO
+            Write-Output "Invoke-MoveEndpointRouteSet complete successfully."
+        }
+        # Move \bin files to Install Directory
+        $SourceBinDirectory = ((Split-Path -Path (Get-Module -ListAvailable PembrokePSrest).path) + "\bin")
+        if(Copy-Item -Path $SourceBinDirectory -Destination $InstallDirectory -Container -Recurse -Force -Confirm:$false){
+            Write-Output "Copied \bin successfully."
         }
     }
     catch
