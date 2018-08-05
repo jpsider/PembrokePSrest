@@ -1,5 +1,9 @@
 $script:ModuleName = 'PembrokePSrest'
 
+$here = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'tests', "$script:ModuleName"
+$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+. "$here\$sut"
+
 Describe "Get-EndpointPort function for $moduleName" {
     function Write-Output{}
     function Test-Connection{}
