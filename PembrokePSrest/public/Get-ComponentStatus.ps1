@@ -33,12 +33,11 @@ function Get-ComponentStatus {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Get-ComponentStatus: $ErrorMessage $FailedItem"
         }
         $ComponentStatusData
     } else {
         Throw "Get-ComponentStatus: Unable to reach Rest server: $RestServer."
     }
-    
 }

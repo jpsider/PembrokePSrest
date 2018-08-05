@@ -25,12 +25,11 @@ function Get-PpsPropertySet {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Get-PpsPropertySet: $ErrorMessage $FailedItem"
         }
         $PropertyData
     } else {
         Throw "Get-PpsPropertySet: Unable to reach Rest server: $RestServer."
     }
-    
 }

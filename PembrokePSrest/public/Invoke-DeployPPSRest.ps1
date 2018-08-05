@@ -22,7 +22,7 @@ function Invoke-DeployPPSRest
         [String]$SourceAvailableRoutesFile = '\PembrokePS\EndpointRoutes.ps1'
     )
     try
-    {       
+    {
         if (Invoke-CreateRouteDirectorySet -InstallDirectory $InstallDirectory)
         {
             Write-Output "Invoke-CreateRouteDirectorySet complete successfully."
@@ -40,7 +40,7 @@ function Invoke-DeployPPSRest
     catch
     {
         $ErrorMessage = $_.Exception.Message
-        $FailedItem = $_.Exception.ItemName		
+        $FailedItem = $_.Exception.ItemName
         Throw "Invoke-DeployPPSRest: $ErrorMessage $FailedItem"
     }
 

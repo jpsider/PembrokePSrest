@@ -16,14 +16,14 @@ param(
 )
 # Import required Modules
 Import-Module -Name PowerLumber,RestPS -Force
-try 
+try
 {
     if (Test-Path -Path $SourceAvailableRoutesFile)
     {
 		$Host.UI.RawUI.WindowTitle = "PembrokePS Endpoint Port:$Port"
 		Start-RestPSListener -Port $Port -RoutesFilePath $SourceAvailableRoutesFile
     }
-    else 
+    else
     {
         Throw "Invoke-NewEndpoint: Routes File: $SourceAvailableRoutesFile does not exist."
     }
@@ -31,6 +31,6 @@ try
 catch
 {
 	$ErrorMessage = $_.Exception.Message
-	$FailedItem = $_.Exception.ItemName		
+	$FailedItem = $_.Exception.ItemName
 	Throw "Invoke-NewEndpoint: $ErrorMessage $FailedItem"
 }

@@ -36,12 +36,11 @@ function Invoke-UpdateTaskTable {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Invoke-UpdateTaskTable: $ErrorMessage $FailedItem"
         }
         $RestReturn
     } else {
         Throw "Invoke-UpdateTaskTable: Unable to reach Rest server: $RestServer."
     }
-    
 }

@@ -34,12 +34,11 @@ function Get-TaskSet {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Get-TaskSet: $ErrorMessage $FailedItem"
         }
         $TaskData
     } else {
         Throw "Get-TaskSet: Unable to reach Rest server: $RestServer."
     }
-    
 }

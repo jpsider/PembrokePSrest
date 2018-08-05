@@ -1,4 +1,4 @@
-function Invoke-MoveAvailableRoutesFile 
+function Invoke-MoveAvailableRoutesFile
 {
     <#
 	.DESCRIPTION
@@ -34,7 +34,7 @@ function Invoke-MoveAvailableRoutesFile
     catch
     {
         $ErrorMessage = $_.Exception.Message
-        $FailedItem = $_.Exception.ItemName		
+        $FailedItem = $_.Exception.ItemName
         Throw "Invoke-MoveAvailableRoutesFile: $ErrorMessage $FailedItem"
     }
 }

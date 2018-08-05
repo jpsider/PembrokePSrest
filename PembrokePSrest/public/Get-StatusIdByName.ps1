@@ -30,12 +30,11 @@ function Get-StatusIdByName {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Get-StatusIdByName: $ErrorMessage $FailedItem"
         }
         $StatusID
     } else {
         Throw "Get-StatusIdByName: Unable to reach Rest server: $RestServer."
     }
-    
 }

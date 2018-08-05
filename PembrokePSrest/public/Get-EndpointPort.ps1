@@ -28,12 +28,11 @@ function Get-EndpointPort {
         catch
         {
             $ErrorMessage = $_.Exception.Message
-            $FailedItem = $_.Exception.ItemName		
+            $FailedItem = $_.Exception.ItemName
             Throw "Get-EndpointPort: $ErrorMessage $FailedItem"
         }
         $EndpointPortData
     } else {
         Throw "Get-EndpointPort: Unable to reach Rest server: $RestServer."
     }
-    
 }

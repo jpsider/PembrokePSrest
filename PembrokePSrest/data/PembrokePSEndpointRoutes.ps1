@@ -26,7 +26,7 @@ function PembrokePSEndpointRoutes
             'RequestType'    = 'DELETE'
             'RequestURL'     = '/selftest'
             'RequestCommand' = "c:\PembrokePS\rest\DELETE\Invoke-SelfTest.ps1"
-        }            
+        }
     )
 }
 PembrokePSEndpointRoutes
