@@ -11,6 +11,7 @@ Describe "Invoke-DeployPPSRest function for $moduleName" {
 	function MoveEndpointRouteSet {}
     function Invoke-CreateRouteDirectorySet{}
     function Invoke-MoveAvailableRoutesFile{}
+	function Invoke-MoveEndpointRouteSet {}
     It "Should not Throw if the sub tasks complete correctly.." {
         Mock -CommandName 'Invoke-CreateRouteDirectorySet' -MockWith {
             return $true
