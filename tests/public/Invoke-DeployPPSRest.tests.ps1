@@ -5,10 +5,12 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 . "$here\$sut"
 
 Describe "Invoke-DeployPPSRest function for $moduleName" {
-    function Write-Output{}
-    function Get-Module{}
-    function Copy-Item{}
+    function Write-Output {}
+    function Get-Module {}
+    function Copy-Item {}
+	function MoveEndpointRouteSet {}
     function Invoke-CreateRouteDirectorySet{}
+    function Invoke-MoveAvailableRoutesFile{}
     It "Should not Throw if the sub tasks complete correctly.." {
         Mock -CommandName 'Invoke-CreateRouteDirectorySet' -MockWith {
             return $true
