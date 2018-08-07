@@ -1,11 +1,20 @@
 site_name: PembrokePSrest
 repo_url: https://github.com/jpsider/PembrokePSrest
 theme: readthedocs
+edit_uri: edit/master/docs/
 pages:
 - Home: index.md
 - PembrokePSrest Basics:
   - What is PembrokePSrest: about.md
   - Quick Start: Quick-Start-Installation-and-Example.md
-- Basic Commands:
-- Examples:
-- Acknowledgements: acknowledgements.md
+- Public Functions:
+  - Get-ComponentStatus: Get-ComponentStatus.md
+  - Get-EndpointPort: Get-EndpointPort.md
+  - Get-PpsPropertySet: Get-PpsPropertySet.md
+  - Get-StatusIdByName: Get-StatusIdByName.md
+  - Get-TaskInfo: Get-TaskInfo.md
+  - Get-TaskSet: Get-TaskSet.md
+  - Invoke-DeployPPSRest: Invoke-DeployPPSRest.md
+  - Invoke-StartPPSEndpoint: Invoke-StartPPSEndpoint.md
+  - Invoke-UpdateComponent: Invoke-UpdateComponent.md
+  - Invoke-UpdateTaskTable: Invoke-UpdateTaskTable.md
